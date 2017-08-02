@@ -6,12 +6,19 @@ var MapWrapper = function(container, center, zoom){
 this.markers = [];
 }
 
-MapWrapper.prototype.addMarker = function(coords){
+MapWrapper.prototype.addMarker = function(coords, image){
     var marker = new google.maps.Marker({
         position: coords,
-        map: this.googleMap
+        map: this.googleMap,
+        // icon: image
     });
     this.markers.push(marker);
+    marker.addListener('click', function(event) {
+    var infowindow = new google.maps.InfoWindow({
+      content: "Latittude: " + event.latLng.lat() + " & Longitude: " + event.latLng.lng()
+    });
+    infowindow.open(this.googleMap, marker);
+  }.bind(this));
 }
 
 MapWrapper.prototype.addClickEvent = function(){
@@ -31,13 +38,14 @@ MapWrapper.prototype.bounceMarkers = function(){
         marker.setAnimation(google.maps.Animation.BOUNCE);
     })
 };
-
+////// dont delete past here!!
 MapWrapper.prototype.goToPub = function(){
-        var coords = {
+    // var image = "https://drive.google.com/file/d/0B_53z2qCX3rfT00zUnIyWXE3d2M/view?usp=sharing";
+    var coords = {
             lat: 55.85938023580518,
             lng: -4.25933450460434
         }
-        this.addMarker(coords);
+        this.addMarker(coords, image);
         this.googleMap.setCenter(coords);
     };
 
