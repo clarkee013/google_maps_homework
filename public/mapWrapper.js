@@ -10,12 +10,12 @@ MapWrapper.prototype.addMarker = function(coords, image){
     var marker = new google.maps.Marker({
         position: coords,
         map: this.googleMap,
-        // icon: image
+        icon: image
     });
     this.markers.push(marker);
     marker.addListener('click', function(event) {
     var infowindow = new google.maps.InfoWindow({
-      content: "Latittude: " + event.latLng.lat() + " & Longitude: " + event.latLng.lng()
+      content: "Your marker is at Latittude: " + event.latLng.lat() + " & Longitude: " + event.latLng.lng()
     });
     infowindow.open(this.googleMap, marker);
   }.bind(this));
@@ -40,7 +40,7 @@ MapWrapper.prototype.bounceMarkers = function(){
 };
 ////// dont delete past here!!
 MapWrapper.prototype.goToPub = function(){
-    // var image = "https://drive.google.com/file/d/0B_53z2qCX3rfT00zUnIyWXE3d2M/view?usp=sharing";
+    var image = "http://icons.iconarchive.com/icons/graphicloads/food-drink/24/drink-2-icon.png"
     var coords = {
             lat: 55.85938023580518,
             lng: -4.25933450460434
